@@ -1,0 +1,19 @@
+{
+  "name": "learn-shaders",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A tutorial site for learning GLSL shaders",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BernieSumption/learn-shaders.git"
+  },
+  "keywords": [
+    "GLSL",
+    "WebGL",
+    "learn",
+    "shaders"
+  ],
+  "author": "Bernie Sumption",
+  "license": "MIT",
+  "homepage": "https://github.com/BernieSumption/learn-shaders"
+}
