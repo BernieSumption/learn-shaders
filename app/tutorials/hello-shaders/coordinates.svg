@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="520px" height="260px" viewBox="0 0 520 260" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-1" stroke="#979797" stroke-width="2" x="61" y="31" width="398" height="198"></rect>
+        <path d="M61,130 L459,130" id="Line" stroke="#979797" stroke-width="2" stroke-linecap="square"></path>
+        <path d="M260,31 L260,229" id="Line" stroke="#979797" stroke-width="2" stroke-linecap="square"></path>
+        <path d="M80,120 L80,140" id="Line" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M160,120 L160,140" id="Line-2" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M100,120 L100,140" id="Line-3" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M180,120 L180,140" id="Line-4" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M120,120 L120,140" id="Line-5" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M140,120 L140,140" id="Line-6" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M200,120 L200,140" id="Line-12" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M220,120 L220,140" id="Line-8" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M240,120 L240,140" id="Line-10" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M280,120 L280,140" id="Line-18" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M360,120 L360,140" id="Line-7" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M300,120 L300,140" id="Line-9" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M380,120 L380,140" id="Line-11" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M320,120 L320,140" id="Line-13" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M340,120 L340,140" id="Line-14" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M400,120 L400,140" id="Line-15" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M420,120 L420,140" id="Line-16" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M440,120 L440,140" id="Line-17" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M270,50 L250,50" id="Line-27" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M270,70 L250,70" id="Line-28" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M270,90 L250,90" id="Line-29" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M270,110 L250,110" id="Line-30" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M270,90 L250,90" id="Line-31" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M270,150 L250,150" id="Line-32" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M270,170 L250,170" id="Line-33" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M270,190 L250,190" id="Line-34" stroke="#979797" stroke-linecap="square"></path>
+        <path d="M270,210 L250,210" id="Line-35" stroke="#979797" stroke-linecap="square"></path>
+        <text id="(-1,--1)" font-family="Trebuchet MS" font-size="12" font-weight="normal" fill="#000000">
+            <tspan x="17.7675781" y="24">(-1, -1)</tspan>
+        </text>
+        <text id="(1,--1)" font-family="Trebuchet MS" font-size="12" font-weight="normal" fill="#000000">
+            <tspan x="464" y="24">(1, -1)</tspan>
+        </text>
+        <text id="(1,-1)" font-family="Trebuchet MS" font-size="12" font-weight="normal" fill="#000000">
+            <tspan x="464" y="245">(1, 1)</tspan>
+        </text>
+        <text id="(0,-0)" font-family="Trebuchet MS" font-size="12" font-weight="normal" fill="#000000">
+            <tspan x="280" y="108">(0, 0)</tspan>
+        </text>
+        <path d="M264.5,125.5 L278.5,111.5" id="Line" stroke="#000000" stroke-linecap="square"></path>
+        <text id="(1,-0)" font-family="Trebuchet MS" font-size="12" font-weight="normal" fill="#000000">
+            <tspan x="464" y="134">(1, 0)</tspan>
+        </text>
+        <text id="(0,-1)" font-family="Trebuchet MS" font-size="12" font-weight="normal" fill="#000000">
+            <tspan x="243.290039" y="245">(0, 1)</tspan>
+        </text>
+        <text id="(0,--1)" font-family="Trebuchet MS" font-size="12" font-weight="normal" fill="#000000">
+            <tspan x="243.086914" y="24">(0, -1)</tspan>
+        </text>
+        <text id="(-1,-1)" font-family="Trebuchet MS" font-size="12" font-weight="normal" fill="#000000">
+            <tspan x="22.1738281" y="245">(-1, 1)</tspan>
+        </text>
+        <text id="(-1,-0)" font-family="Trebuchet MS" font-size="12" font-weight="normal" fill="#000000">
+            <tspan x="22.1738281" y="133">(-1, 0)</tspan>
+        </text>
+    </g>
+</svg>
