@@ -33,7 +33,6 @@ define (require) ->
       @preContentElement = byClassName '.article-pre-content'
       @editorElement = byClassName '.article-editor'
       @postContentElement = byClassName '.article-post-content'
-      @tamarind =
 
 
     display: (article, chapter = 1) ->
