@@ -2,5 +2,8 @@
   "name": "learn-shaders",
   "version": "0.0.0",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "requirejs": "~2.1.16",
+    "marked": "~0.3.3"
+  }
 }

@@ -17,10 +17,23 @@
   "license": "MIT",
   "homepage": "https://github.com/BernieSumption/learn-shaders",
   "devDependencies": {
-    "broccoli": "^0.15.0",
-    "broccoli-render-template": "0.0.3",
-    "jade": "^1.9.2",
-    "main-bower-files": "^2.6.2",
-    "markdown": "^0.5.0"
+    "auto-reload-brunch": "^1.7.8",
+    "brunch": "^1.7.20",
+    "coffee-script-brunch": "^1.8.1",
+    "coffeelint": "^1.9.2",
+    "coffeelint-brunch": "^1.7.0",
+    "coffeelint-no-implicit-returns": "0.0.4",
+    "css-brunch": "^1.7.0",
+    "jasmine-core": "^2.2.0",
+    "javascript-brunch": "^1.7.1",
+    "karma": "^0.12.31",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-firefox-launcher": "^0.1.4",
+    "karma-ie-launcher": "^0.1.5",
+    "karma-jasmine": "^0.3.5",
+    "karma-requirejs": "^0.2.2",
+    "karma-sourcemap-loader": "^0.3.4",
+    "less-brunch": "^1.8.1",
+    "requirejs": "^2.1.16"
   }
 }

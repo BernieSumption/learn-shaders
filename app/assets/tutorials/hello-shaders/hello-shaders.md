@@ -8,11 +8,11 @@ In this first tutorial you'll be introduced to some core features of the GLSL la
 
 OK let's write a shader. The editor interface below lets you type GLSL code and see the results immediately. Each exercise on this site has a code sample that you need to type into the editor. I encourage you to actually type the code samples in - there's nothing to stop you from copying and pasting, but the experience of typing will make the code stick in your mind much more effectively.
 
-<pre data-editor="frag">
+<textarea>
 void main() {
     gl_FragColor = vec4(1.0, 0.0, 0.5, 1.0);
 }
-</pre>
+</textarea>
 
 You done? If so then the preview window should have turned hot pink - the best of all the colors. The kind of shader you just wrote is a fragment shader. The purpose of a fragment shader is to decide what color each pixel is.
 
