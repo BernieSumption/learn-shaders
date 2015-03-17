@@ -44,35 +44,50 @@ The two kinds of error you'll see most often are type errors and syntax errors.
 
 If you can't find the cause of an error, the best bet is to google the full text of the error message.
 
-## Thinking inside-out: emergent properties
+# Thinking inside-out: emergent properties
 
 It might not have been obvious when you completed the above exercise, but the shader program you created actually ran a few hundred thousand times. That's because a fragment shader runs once per pixel and outputs a single color value for that pixel, so coloring in a 100 x 100 pixel square requires 10,000 invocations of the fragment shader.
 
 This can take a bit of getting used to. If you've done graphics programming before, say in Flash or HTML5 Canvas, you might be used to commands that draw shapes like circles and rectangles. In a fragment shader, all you can do is control the color of a single pixel. This means that drawing anything more complicated than a flat color requires you to think in terms of emergent properties.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/8vhE8ScWe7w" frameborder="0" allowfullscreen></iframe>
+My favourite example of an emergent property is the shape and motion of a flock of birds:
 
-The shape and motion of a flock of birds is an example of an emergent property - there is no rule that describes directly how the flock behaves, instead each individual bird follows a few simple rules, and when a flock of thousands of birds all follow the same rules then you get complex results. (Scientists have a pretty good idea of the exact rules each bird is following, you can [read more here](http://en.wikipedia.org/wiki/Flocking_(behavior))).
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8vhE8ScWe7w?start=45" frameborder="0" allowfullscreen></iframe>
+
+
+There is no rule that describes directly how the flock behaves, instead each individual bird follows a few simple rules, and when a flock of thousands of birds all follow the same rules then you get complex results. (Scientists have a pretty good idea of the exact rules each bird is following, you can <a href="http://en.wikipedia.org/wiki/Flocking_(behavior)">read more here</a>.
 
 So when you're creating a shader, you need to think inside-out, and come up with some rules that when followed by every pixel will create the effect that you want.
 
 ## Drawing a gradient
 
-Let's try using emergence to create a gradient. A gradient is a smooth transition between two colors A and B, such that at the start of the gradient all pixels are pure A, at the end they're pure B, and in between the colors gradually change from A to B.
+A gradient is a smooth transition between two colors A and B, such that at the start of the gradient all pixels are pure A, at the end they're pure B, and in between the colors gradually change from A to B. In a traditional drawing environment like HTML's 2D canvas, you'd do this using the function that describes the gradient you want to create:
 
-To create a fragment shader that draws a gradient, each pixel needs to know where it is on that gradient. It can do that using the v_position varying. You'll learn more about varyings later, but for now just know that it's a vec2 of the pixel's position in *world space coordinates*:
+```javascript
+var grd=ctx.createLinearGradient(0,0,170,0); // horizontal from left to right, 170px wide
+grd.addColorStop(0,"black"); // black at start
+grd.addColorStop(1,"white"); // white at end
+ctx.fillStyle=grd;
+ctx.fillRect(20,20,150,100); // cover an x,y,width,height area with the above gradient
+```
+
+[view example](http://www.w3schools.com/tags/canvas_createlineargradient.asp)
+
+That's top-down thinking - the effect is described in terms of a modification to the whole canvas. To create a fragment shader that draws a gradient you need to design a rule that can be followed by each pixel independently to create the gradient effect.
+
+To do this, each pixel needs to know where it is on that gradient so that it can make itself the right color. It can do that using the v_position varying. You'll learn more about varyings later, but for now just know that it's a vec2 of the pixel's position in *world space coordinates*:
 
 ![](coordinates.svg)
 
 This shader creates a gradient from black vec4(0,0,0,1) to white vec4(1,1,1,1).
 
-<pre data-editor="frag">
+<textarea>
 void main() {
   // p will be 0 at the left and 1 at the right
   float p = v_position.x * 0.5 + 0.1;
   gl_FragColor = vec4(p, p, p, 1.0);
 }
-</pre>
+</textarea>
 
 A few features of the above program worth mentioning:
 
@@ -84,7 +99,7 @@ A few features of the above program worth mentioning:
 
 * Turn this into a vertical gradient. Before you do this, look at the "screen coordinates" diagram above, and figure out what the code on line 6 should be to put pink at the top and yellow at the bottom. [reveal answer](# "gl_FragCoord.y / u_CanvasSize.y")
 
-## Moar color!
+# Moar color!
 
 That's not very interesting. The last shader was pink. I demand more pink!
 
@@ -114,14 +129,14 @@ A really nice feature of GLSL is that vectors support all basic mathematical ope
 
 This means that the code to do a linear interpolation of two colors is exactly the same as with two numbers:
 
-<pre data-editor="frag">
+<textarea>
 void main() {
     vec4 pink = vec4(1.0, 0.0, 0.5, 1.0);
     vec4 yellow = vec4(1.0, 1.0, 0.0, 1.0);
     float p = v_position.x * 0.5 + 0.5;
     gl_FragColor = pink * (1.0-p) + yellow * p;
 }
-</pre>
+</textarea>
 
 **Exercises**
 
@@ -129,18 +144,18 @@ void main() {
 
 * Make a 45 degree gradient that is pink in the bottom left and yellow in the top right. [reveal solution](# "float p = (v_position.x + v_position.y) * 0.25 * 0.5")
 
-## Interactive controls
+# Interactive controls
 
 The u_CanvasSize value that you used earlier is an example of a uniform - a value provided from JavaScript to your shader that is the same across all fragments. The editor allows you to add inputs which will become available to your shader. The `u_` prefix is not required but is a common convention - using it will make it easier for other programmers to understand your shaders.
 
 This editor has two color pickers set up. The colors chosen by these pickers are available in your shader as uniforms called `u_LeftColor` and `u_RightColor`.
 
-<pre data-editor="frag">
+<textarea>
 void main() {
     float p = gl_FragCoord.x / u_CanvasSize.x;
     gl_FragColor = mix(u_LeftColor, u_RightColor, p);
 }
-</pre>
+</textarea>
 
 You can add your own inputs to any shader using the inputs button. You've seen the color picker input. Let's try adding another. Click the inputs button on the editor and add a slider input called u_SliderInput that produces values between 0.1 and 10. Now add a line to the shader that raises p to the power of the slider input:
 
@@ -150,13 +165,13 @@ p = pow(p, u_SliderInput);
 
 See the effect that moving the slider has on the gradient. By adding a power transformation to the p value you're replacing the linear interpolation with an exponential interpolation. When animating values, exponential interpolations with a power less than 1 are referred to as "easing out" and powers greater than one are "easing in".
 
-## Drawing shapes
+# Drawing shapes
 
 Your eyes are much better at detecting subtle variations in position than in lightness, so here's a trick to make it easier to visualise the effect of exponential interpolation. In the following multi-step exercise we're going to draw a line graph on the canvas that plots the relationship between the gradient value and the X axis.
 
 You're about to create an additional function (in addition to main()). One important thing to know about functions is that they must appear before the functions that use them, so main() will typically be the last function in your shader.
 
-<pre data-editor="frag">
+<textarea>
 // STEP 1:
 // this function blacks out any pixel whose height
 // is less than `value`, visualising how `value`
@@ -195,7 +210,7 @@ void graph(float value) {
     gl_FragColor = vec4(v, v, v, 1);
   }
 }
-</pre>
+</textarea>
 
 **Exercise**
 

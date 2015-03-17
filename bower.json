@@ -3,7 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "requirejs": "~2.1.16",
-    "marked": "~0.3.3"
+    "marked": "~0.3.3",
+    "page": "~1.6.1",
+    "zepto": "~1.1.6",
+    "console-polyfill": "~0.2.0",
+    "normalize": "~1.0.4",
+    "tamarind": "https://github.com/BernieSumption/tamarind.git"
+  },
+  "overrides": {
+    "tamarind": {
+      "dependencies": []
+    }
   }
 }

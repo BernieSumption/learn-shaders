@@ -6,16 +6,15 @@ exports.config =
   files:
     javascripts:
       joinTo:
-        'learn-shaders.js': /^app/
+        'learn-shaders.js': /^(app|bower_components)/
         'learn-shaders.tests.js': /^test/
-        'learn-shaders.vendor.js': /^bower_components/
 
     stylesheets:
       joinTo: 'learn-shaders.css'
 #
   modules:
-    definition: 'amd'
-    wrapper: 'amd'
+    definition: false
+    wrapper: false
 
   paths:
     public: 'build'

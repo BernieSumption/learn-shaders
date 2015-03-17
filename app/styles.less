@@ -1,0 +1,113 @@
+body {
+  font-family:Helvetica,arial,sans-serif;
+  font-size:1.1em;
+  line-height:1.6;
+  background-color:#fff;
+  padding:30px
+}
+
+
+a {
+  color:#FF0080
+}
+
+h1 code, h2 code, h3 code, h4 code, h5 code, h6 code {
+  font-size:inherit
+}
+
+h1 {
+  font-size:2em;
+  color:#000
+}
+
+h2 {
+  font-size:1.5em;
+  border-bottom:1px solid #ccc;
+  color:#000
+}
+
+h3 {
+  font-size:1.2em;
+}
+
+h4, h5, h6 {
+  font-size:1em;
+}
+
+p, blockquote, ul, ol, dl, li, table, pre, hr {
+  margin:15px 0
+}
+
+
+li {
+  margin:0
+}
+
+ul,ol {
+  padding-left:30px
+}
+
+
+
+blockquote {
+  border-left:4px solid #ddd;
+  padding:0 15px;
+  color:#777
+}
+
+
+
+img {
+  max-width:100%
+}
+
+span.frame {
+  display:block;
+  overflow:hidden
+}
+
+span.frame > span {
+  border:1px solid #ddd;
+  display:block;
+  float:left;
+  overflow:hidden;
+  margin:13px 0 0;
+  padding:7px;
+  width:auto
+}
+
+span.frame span img {
+  display:block;
+  float:left
+}
+
+span.frame span span {
+  clear:both;
+  color:#333;
+  display:block;
+  padding:5px 0 0
+}
+
+span.align-center {
+  display:block;
+  overflow:hidden;
+  clear:both
+}
+
+
+@media screen and (min-width: 914px) {
+  body {
+    width:854px;
+    margin:0 auto
+  }
+}
+
+@media print {
+  table,pre {
+    page-break-inside:avoid
+  }
+
+  pre {
+    word-wrap:break-word
+  }
+}

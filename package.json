@@ -19,6 +19,7 @@
   "devDependencies": {
     "auto-reload-brunch": "^1.7.8",
     "brunch": "^1.7.20",
+    "clean-css-brunch": "^1.7.2",
     "coffee-script-brunch": "^1.8.1",
     "coffeelint": "^1.9.2",
     "coffeelint-brunch": "^1.7.0",
@@ -31,7 +32,6 @@
     "karma-firefox-launcher": "^0.1.4",
     "karma-ie-launcher": "^0.1.5",
     "karma-jasmine": "^0.3.5",
-    "karma-requirejs": "^0.2.2",
     "karma-sourcemap-loader": "^0.3.4",
     "less-brunch": "^1.8.1",
     "requirejs": "^2.1.16"
