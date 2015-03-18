@@ -5,7 +5,7 @@ class Page
 
   H1_REGEX = /^#(?!#)\s*(.*)/
 
-  TEXTAREA_REGEX = /^([\s\S]*)<textarea>([\s\S]*)<\/textarea>([\s\S]*)$/im
+  TEXTAREA_REGEX = /^([\s\S]*)```editor([\s\S]*?)^```([\s\S]*)$/im
 
   @fromMarkdown = (source) ->
     source = source.trim()

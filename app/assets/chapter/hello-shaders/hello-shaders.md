@@ -8,11 +8,11 @@ In this first chapter you'll be introduced to some core features of the GLSL lan
 
 OK let's write a shader. The editor interface below lets you type GLSL code and see the results immediately. Each exercise on this site has a code sample that you need to type into the editor. I encourage you to actually type the code samples in - there's nothing to stop you from copying and pasting, but the experience of typing will make the code stick in your mind much more effectively.
 
-<textarea>
+```editor
 void main() {
-    gl_FragColor = vec4(1.0, 0.0, 0.5, 1.0);
+  gl_FragColor = vec4(1.0, 0.0, 0.5, 1.0);
 }
-</textarea>
+```
 
 You done? If so then the preview window should have turned hot pink - the best of all the colors. The kind of shader you just wrote is a fragment shader. The purpose of a fragment shader is to decide what color each pixel is.
 
@@ -71,8 +71,6 @@ ctx.fillStyle=grd;
 ctx.fillRect(20,20,150,100); // cover an x,y,width,height area with the above gradient
 ```
 
-[view example](http://www.w3schools.com/tags/canvas_createlineargradient.asp)
-
 That's top-down thinking - the effect is described in terms of a modification to the whole canvas. To create a fragment shader that draws a gradient you need to design a rule that can be followed by each pixel independently to create the gradient effect.
 
 To do this, each pixel needs to know where it is on that gradient so that it can make itself the right color. It can do that using the v_position varying. You'll learn more about varyings later, but for now just know that it's a vec2 of the pixel's position in *world space coordinates*:
@@ -81,13 +79,13 @@ To do this, each pixel needs to know where it is on that gradient so that it can
 
 This shader creates a gradient from black vec4(0,0,0,1) to white vec4(1,1,1,1).
 
-<textarea>
+```editor
 void main() {
   // p will be 0 at the left and 1 at the right
-  float p = v_position.x * 0.5 + 0.1;
+  float p = v_position.x * 0.5 + 0.5;
   gl_FragColor = vec4(p, p, p, 1.0);
 }
-</textarea>
+```
 
 A few features of the above program worth mentioning:
 
@@ -107,17 +105,17 @@ To make a color gradient you need to calculate a linear interpolation between th
 
 A linear interpolation Interpolation is a concept you'll use a lot in graphics programming, and it's easiest to see how it works on numbers:
 
-<pre data-highlight="JavaScript">
+```javascript
 // JavaScript function to interpolate between two numbers. Returns
 // x if a == 0, y if a == 1, or an appropriate intermediate value
 function interpolate(x, y, a) {
-    return x * (1-a) + y * a;
+  return x * (1-a) + y * a;
 }
 interpolate(5, 10, 0);   // returns 5
 interpolate(5, 10, 1);   // returns 10
 interpolate(5, 10, 0.5); // returns 7.5
 interpolate(5, 10, 0.8); // returns 9
-</pre>
+```
 
 Colors are represented as RGBA values, and in order to create a color half way between two RGBA values you interpolate each color channel separately. For example hot pink is `vec4(1, 0, 0.5, 1)` and yellow is `vec4(1, 1, 0, 1)`, so half way between hot pink and yellow is `vec4(1, 0.5, 0.25, 1)`.
 
@@ -129,14 +127,14 @@ A really nice feature of GLSL is that vectors support all basic mathematical ope
 
 This means that the code to do a linear interpolation of two colors is exactly the same as with two numbers:
 
-<textarea>
+```editor
 void main() {
-    vec4 pink = vec4(1.0, 0.0, 0.5, 1.0);
-    vec4 yellow = vec4(1.0, 1.0, 0.0, 1.0);
-    float p = v_position.x * 0.5 + 0.5;
-    gl_FragColor = pink * (1.0-p) + yellow * p;
+  vec4 pink = vec4(1.0, 0.0, 0.5, 1.0);
+  vec4 yellow = vec4(1.0, 1.0, 0.0, 1.0);
+  float p = v_position.x * 0.5 + 0.5;
+  gl_FragColor = pink * (1.0-p) + yellow * p;
 }
-</textarea>
+```
 
 **Exercises**
 
@@ -150,18 +148,18 @@ The `u_CanvasSize` value that you used earlier is an example of a uniform - a va
 
 This editor has two color pickers set up. The colors chosen by these pickers are available in your shader as uniforms called `u_LeftColor` and `u_RightColor`.
 
-<textarea>
+```editor
 void main() {
-    float p = gl_FragCoord.x / u_CanvasSize.x;
-    gl_FragColor = mix(u_LeftColor, u_RightColor, p);
+  float p = v_position.x * 0.5 + 0.5;
+  gl_FragColor = mix(u_LeftColor, u_RightColor, p);
 }
-</textarea>
+```
 
 You can add your own inputs to any shader using the inputs button. You've seen the color picker input. Let's try adding another. Click the inputs button on the editor and add a slider input called u_SliderInput that produces values between 0.1 and 10. Now add a line to the shader that raises p to the power of the slider input:
 
-<pre data-highlight="GLSL">
+```glsl
 p = pow(p, u_SliderInput);
-</pre>
+```
 
 See the effect that moving the slider has on the gradient. By adding a power transformation to the p value you're replacing the linear interpolation with an exponential interpolation. When animating values, exponential interpolations with a power less than 1 are referred to as "easing out" and powers greater than one are "easing in".
 
@@ -171,7 +169,7 @@ Your eyes are much better at detecting subtle variations in position than in lig
 
 You're about to create an additional function (in addition to main()). One important thing to know about functions is that they must appear before the functions that use them, so main() will typically be the last function in your shader.
 
-<textarea>
+```editor
 // STEP 1:
 // this function blacks out any pixel whose height
 // is less than `value`, visualising how `value`
@@ -210,7 +208,7 @@ void graph(float value) {
     gl_FragColor = vec4(v, v, v, 1);
   }
 }
-</textarea>
+```editor
 
 **Exercise**
 

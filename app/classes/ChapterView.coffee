@@ -5,6 +5,41 @@
 
 class ChapterView
 
+  INITIAL_FRAGMENT_SHADER_HEADER = '''
+    precision mediump float;
+    uniform vec2 u_CanvasSize;
+    varying vec2 v_position;
+
+
+  '''
+
+  INITIAL_FRAGMENT_SHADER = INITIAL_FRAGMENT_SHADER_HEADER + '''
+    void main() {
+      // enter your shader here
+    }
+  '''
+
+  INITIAL_VSHADER_SOURCE = '''
+    attribute float a_VertexIndex;
+    varying vec2 v_position;
+
+    void main() {
+      // this is the default vertex shader. It positions 4 points, one in each corner clockwise from top left, creating a rectangle that fills the whole canvas.
+      if (a_VertexIndex == 0.0) {
+        v_position = vec2(-1, -1);
+      } else if (a_VertexIndex == 1.0) {
+        v_position = vec2(1, -1);
+      } else if (a_VertexIndex == 2.0) {
+        v_position = vec2(1, 1);
+      } else if (a_VertexIndex == 3.0) {
+        v_position = vec2(-1, 1);
+      } else {
+        v_position = vec2(0);
+      }
+      gl_Position.xy = v_position;
+    }
+  '''
+
   @TEMPLATE = '''
     <div class="chapter-title"></div>
     <div class="chapter-pre-content"></div>
@@ -23,7 +58,7 @@ class ChapterView
 
     @_wrapper = $(wrapperElement)
 
-    @tamarind = new ShaderEditor(@$('.chapter-editor').get(0))
+    @tamarind = new ShaderEditor(@$('.chapter-editor-tamarind').get(0))
 
     @pageIndex = 1
 
@@ -49,14 +84,32 @@ class ChapterView
 
     postContent.add(preContent).find('img').on('error', @_handleImageError)
 
-    @tamarind.reset({
-      canvas: {
-        fragmentShaderSource: page.editorConfig
-        vertexShaderSource: WebGLCanvas.DEFAULT_VSHADER_SOURCE
-        vertexCount: 4
-        drawingMode: 'TRIANGLE_FAN'
-      }
-    })
+    if page.editorConfig
+      if pageIndex is 0
+        fragmentShader = INITIAL_FRAGMENT_SHADER
+      else
+        previousFragmentShader = @chapter.pages[pageIndex - 1].editorConfig
+        if previousFragmentShader
+          fragmentShader = INITIAL_FRAGMENT_SHADER_HEADER + previousFragmentShader
+        else
+          fragmentShader = INITIAL_FRAGMENT_SHADER
+      @$('.chapter-editor').show()
+      @tamarind.reset({
+        canvas: {
+          fragmentShaderSource: fragmentShader
+          vertexShaderSource: INITIAL_VSHADER_SOURCE
+          vertexCount: 4
+          drawingMode: 'TRIANGLE_FAN'
+        }
+      })
+      CodeMirror.runMode page.editorConfig, 'clike', @$('.chapter-editor-codesample').get(0)
+
+      @$('.lang-javascript').each (i, el) ->
+        CodeMirror.runMode $(el).text(), 'javascript', el
+        return
+
+    else
+      @$('.chapter-editor').hide()
 
     if pageNo > 1
       @$('.chapter-previous-page-link').show().attr('href', pageNo - 1)

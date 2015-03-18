@@ -9,6 +9,10 @@ exports.config =
         'learn-shaders.js': /^(app|bower_components)/
         'learn-shaders.tests.js': /^test/
 
+      order:
+        # ensure tamarind, which contains codemirror, loads before our codemirror extensions
+        before: /tamarind/
+
     stylesheets:
       joinTo: 'learn-shaders.css'
 #
