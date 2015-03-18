@@ -18,10 +18,10 @@ describe 'Chapter', ->
 
       # another title
 
-      <textarea>
+      ```editor
       looks like a fragment
       shader to me
-      </textarea>
+      ```
 
       the post content
       and still more
@@ -40,8 +40,11 @@ describe 'Chapter', ->
 
       # my title
 
-      <textarea></textarea>
-      <textarea></textarea>
+      ```editor
+      ```
+
+      ```editor
+      ```
 
       # another title
     ''', 'Error in page 1: Only one editor permitted per section'

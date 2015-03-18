@@ -41,10 +41,23 @@ class ChapterView
   '''
 
   @TEMPLATE = '''
-    <div class="chapter-title"></div>
-    <div class="chapter-pre-content"></div>
-    <div class="chapter-editor"></div>
-    <div class="chapter-post-content"></div>
+    <div id="views-chapter" class="cm-s-default">
+      <h1 class="page-title"></h1>
+      <div class="chapter-place-indicator">
+        <a href="#" class="chapter-previous-page-link">&larr; previous</a>
+        <span class="chapter-title"></span> page <span class="chapter-current-page"></span> of <span class="chapter-total-pages"></span>
+        <a href="#" class="chapter-next-page-link">next &rarr;</a>
+      </div>
+      <div class="chapter-pre-content"></div>
+      <div class="chapter-editor">
+        <pre class="chapter-editor-codesample"></pre>
+        <div class="chapter-editor-tamarind"></div>
+      </div>
+      <div class="chapter-post-content"></div>
+      <div class="chapter-place-indicator">
+        <a href="#" class="chapter-next-page-link">Next page: "<span class="chapter-next-page-title"></span>" &rarr;</a>
+      </div>
+    </div>
   '''
 
   # @param wrapperElement a DOM element to render the UI in. If non-empty, must contain elements

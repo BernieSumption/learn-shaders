@@ -32,6 +32,7 @@ describe 'Page', ->
   it 'should parse out the preContent, editorConfig and postContent', ->
 
     # all three
+    debugger
     expectParse '''
 
       # my title
@@ -40,10 +41,10 @@ describe 'Page', ->
 
       and more
 
-      <textarea>
+      ```editor
       looks like a fragment
       shader to me
-      </textarea>
+      ```
 
       the post content
 
@@ -66,10 +67,10 @@ describe 'Page', ->
 
       and more
 
-      <textarea>
+      ```editor
       looks like a fragment
       shader to me
-      </textarea>
+      ```
 
     ''', {
       title: 'my title'
@@ -83,10 +84,10 @@ describe 'Page', ->
 
       # my title
 
-      <textarea>
+      ```editor
       looks like a fragment
       shader to me
-      </textarea>
+      ```
 
       the post content
 
@@ -104,10 +105,10 @@ describe 'Page', ->
 
       # my title
 
-      <textarea>
+      ```editor
       looks like a fragment
       shader to me
-      </textarea>
+      ```
 
 
     ''' , {
@@ -137,13 +138,13 @@ describe 'Page', ->
     expectParseError '''
       # my title
 
-      <textarea>
+      ```editor
       shader one
-      </textarea>
+      ```
 
-      <textarea>
+      ```editor
       shader two
-      </textarea>
+      ```
 
     ''', 'Only one editor permitted per section'
 
