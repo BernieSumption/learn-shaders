@@ -1,8 +1,8 @@
-# Tutorial 1: hello shaders
+# Hello Shaders
 
 Hello, and welcome to LearnShaders.com! This series of tutorials will gradually introduce you to shaders, and teach you how to use them to make interactive web animations.
 
-In this first tutorial you'll be introduced to some core features of the GLSL language and build an interactive toy that you can share with the world.
+In this first chapter you'll be introduced to some core features of the GLSL language and build an interactive toy that you can share with the world.
 
 ## Your first shader
 

@@ -1,7 +1,7 @@
 
 
 
-describe 'TutorialView', ->
+describe 'ChapterView', ->
 
   expectInnerHTML = (element, innerHTML) ->
     expected = element.innerHTML.trim().replace(/\s+/g, ' ')
@@ -9,9 +9,9 @@ describe 'TutorialView', ->
     expect(JSON.stringify(expected)).toEqual JSON.stringify(actual)
     return
 
-  it 'should display the parsed article content on demand', ->
+  it 'should display the parsed chapter content on demand', ->
 
-    a = Tutorial.fromMarkdown '''
+    a = Chapter.fromMarkdown '''
 
       # my title
 
@@ -31,7 +31,7 @@ describe 'TutorialView', ->
     '''
 
     wrapper = document.createElement 'div'
-    av = new TutorialView(wrapper)
+    av = new ChapterView(wrapper)
 
     av.display(a)
 
@@ -66,7 +66,7 @@ describe 'TutorialView', ->
     spyOn(console, 'error')
 
 
-    a = Tutorial.fromMarkdown '''
+    a = Chapter.fromMarkdown '''
 
       # my title
 
@@ -74,7 +74,7 @@ describe 'TutorialView', ->
     '''
 
     wrapper = document.createElement 'div'
-    av = new TutorialView(wrapper)
+    av = new ChapterView(wrapper)
     av.display(a)
 
     interval = setInterval (->

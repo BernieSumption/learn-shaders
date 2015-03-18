@@ -1,15 +1,15 @@
 
 
-describe 'Chapter', ->
+describe 'Page', ->
 
   expectParse = (source, results) ->
-    ch = Chapter.fromMarkdown source
+    ch = Page.fromMarkdown source
     for k, v of results
       expect(JSON.stringify(ch[k])).toEqual JSON.stringify(v)
     return
 
   expectParseError = (source, message) ->
-    expect(-> Chapter.fromMarkdown source).toThrow(new Error(message))
+    expect(-> Page.fromMarkdown source).toThrow(new Error(message))
     return
 
 
@@ -25,7 +25,7 @@ describe 'Chapter', ->
 
     expectParse '# my title\nmore content', title: 'my title'
 
-    expectParseError '## my title', 'Chapter must begin with H1'
+    expectParseError '## my title', 'Page must begin with H1'
 
     return
 
