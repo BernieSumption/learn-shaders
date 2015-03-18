@@ -15,23 +15,54 @@ class LearnShaders
 
     ++instanceCount
 
+
     @_viewsElement = document.getElementById('views')
-
-    @chapterView = new ChapterView(document.getElementById('views-chapter'))
-
+    @_chapterView = new ChapterView(document.getElementById('views-chapter'))
     @_chapters = {}
 
-    page('/chapter/:chapter/:page?', @_handleNavigateToChapter)
-    page.start()
+    if Tamarind.browserSupportsRequiredFeatures()
+      page('/', @_defer(@_displayHome))
+      page('/chapter/:chapter/:page?', @_defer(@_handleNavigateToChapter))
+      page('*', @_defer(@_displayNotFound))
+      page.start()
+    else
+      @_displayNotSupported()
+
+  # page.js calls the page enter function before the URL changes, causing assets
+  # to load relative to the previous page's URL. This gives the URL a chance to change
+  # ensuring correct relative paths
+  _defer: (f) ->
+    self = @
+    return (arg) ->
+      deferred = ->
+        f.call(self, arg)
+        return
+      console.log document.location.href
+      setTimeout(deferred, 1)
+      return
+
+  _displayHome: ->
+    @_viewsElement.className = 'is-home'
+    return
 
 
-  _handleNavigateToChapter: (context) =>
-    @loadChapter(context.params.chapter, context.params.page)
+  _displayNotFound: ->
+    @_viewsElement.className = 'is-not-found'
+    return
+
+
+  _displayNotSupported: ->
+    @_viewsElement.className = 'is-not-supported'
+    return
+
+
+  _handleNavigateToChapter: (context) ->
+    @_loadChapter(context.params.chapter, context.params.page)
     return
 
 
   # Show a chapter
-  loadChapter: (chapterName, pageNumber) ->
+  _loadChapter: (chapterName, pageNumber) ->
     if @_chapters[chapterName]
       @_displayChapter(@_chapters[chapterName], pageNumber)
     else
@@ -45,13 +76,14 @@ class LearnShaders
           @_displayChapter(@_chapters[chapterName], pageNumber)
           return
         error: ->
-          throw new Error('handle me!')
+          @_displayNotFound()
+          return
       })
 
     return
 
   _displayChapter: (chapter, pageNumber) ->
-    @chapterView.display(chapter, pageNumber)
+    @_chapterView.display(chapter, pageNumber)
     @_viewsElement.className = 'is-chapter'
     return
 

@@ -60,3 +60,30 @@ blockquote {
 img {
   max-width:100%
 }
+
+
+.pull-quote {
+  color: #666;
+  font-family: Georgia, serif;
+  font-size: 1.5em;
+  width: 70%;
+  margin: 40px auto;
+  position: relative;
+  text-align: center;
+
+  &:before {
+    content: "\201C";
+    font-size: 4em;
+    line-height: 1em;
+    position: absolute;
+    left: -50px
+  }
+
+  &:after {
+    content: "\201D";
+    font-size: 4em;
+    line-height: 1em;
+    position: absolute;
+    right: -50px
+  }
+}
