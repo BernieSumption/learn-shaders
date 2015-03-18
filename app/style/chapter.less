@@ -1,0 +1,27 @@
+
+.chapter-place-indicator {
+  border: solid 1px #DDD;
+  background: #F8F8F8;
+  border-radius: 5px;
+  position: relative;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 40px;
+
+  // ensure this element is always sized as if it has at least one line of content
+  &:after {
+    content: "\0000a0";
+    display: inline-block;
+    width: 0;
+  }
+}
+
+.chapter-previous-page-link {
+  position: absolute;
+  left: 20px;
+}
+
+.chapter-next-page-link {
+  position: absolute;
+  right: 20px;
+}

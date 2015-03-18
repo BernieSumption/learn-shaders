@@ -146,7 +146,7 @@ void main() {
 
 # Interactive controls
 
-The u_CanvasSize value that you used earlier is an example of a uniform - a value provided from JavaScript to your shader that is the same across all fragments. The editor allows you to add inputs which will become available to your shader. The `u_` prefix is not required but is a common convention - using it will make it easier for other programmers to understand your shaders.
+The `u_CanvasSize` value that you used earlier is an example of a uniform - a value provided from JavaScript to your shader that is the same across all fragments. The editor allows you to add inputs which will become available to your shader. The `u_` prefix is not required but is a common convention - using it will make it easier for other programmers to understand your shaders.
 
 This editor has two color pickers set up. The colors chosen by these pickers are available in your shader as uniforms called `u_LeftColor` and `u_RightColor`.
 
