@@ -3,13 +3,6 @@
 
 describe 'ChapterView', ->
 
-  expectInnerHTML = (element, innerHTML) ->
-    expected = element.innerHTML.trim().replace(/\s+/g, ' ')
-    actual = innerHTML.trim().replace(/\s+/g, ' ')
-    expect(JSON.stringify(expected)).toEqual JSON.stringify(actual)
-    return
-
-
   it 'should console log an error when there is an image 404', (done) ->
 
     spyOn(console, 'error')
@@ -39,5 +32,33 @@ describe 'ChapterView', ->
 
 
     return
+
+  it 'should progressively enhance "reveal answer" links', ->
+
+    spyOn(console, 'error')
+
+    a = Chapter.fromMarkdown '''
+
+      # my title
+
+      [correct style](# "Secret answer!")
+
+      [wrong href](lala "Quux")
+
+      [no title](#)
+    '''
+
+    wrapper = document.createElement 'div'
+    av = new ChapterView(wrapper)
+    av.display(a)
+
+    links = $(wrapper).find('.chapter-content a').get()
+
+    expect(links[0].onclick).toEqual(ChapterView.prototype._linkClickHandler)
+    expect(links[1].onclick).toBeNull()
+    expect(links[2].onclick).toBeNull()
+
+    return
+
 
   return

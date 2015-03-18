@@ -32,7 +32,6 @@ describe 'Page', ->
   it 'should parse out the preContent, editorConfig and postContent', ->
 
     # all three
-    debugger
     expectParse '''
 
       # my title

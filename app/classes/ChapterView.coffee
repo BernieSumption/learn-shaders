@@ -48,12 +48,12 @@ class ChapterView
         <span class="chapter-title"></span> page <span class="chapter-current-page"></span> of <span class="chapter-total-pages"></span>
         <a href="#" class="chapter-next-page-link">next &rarr;</a>
       </div>
-      <div class="chapter-pre-content"></div>
+      <div class="chapter-content chapter-pre-content"></div>
       <div class="chapter-editor">
         <pre class="chapter-editor-codesample"></pre>
         <div class="chapter-editor-tamarind"></div>
       </div>
-      <div class="chapter-post-content"></div>
+      <div class="chapter-content chapter-post-content"></div>
       <div class="chapter-place-indicator">
         <a href="#" class="chapter-next-page-link">Next page: "<span class="chapter-next-page-title"></span>" &rarr;</a>
       </div>
@@ -88,6 +88,7 @@ class ChapterView
     pageIndex = pageNo - 1
     page = @chapter.pages[pageIndex]
 
+
     @$('.chapter-title').html(chapter.title)
     @$('.page-title').html(page.title)
     preContent = @$('.chapter-pre-content')
@@ -95,7 +96,9 @@ class ChapterView
     postContent = @$('.chapter-post-content')
     postContent.html(@_parseMarkdown(page.postContent))
 
-    postContent.add(preContent).find('img').on('error', @_handleImageError)
+    allContent = postContent.add(preContent)
+
+    @$('.chapter-content img').on('error', @_handleImageError)
 
     if page.editorConfig
       if pageIndex is 0
@@ -138,7 +141,19 @@ class ChapterView
     @$('.chapter-current-page').html(pageNo)
     @$('.chapter-total-pages').html(chapter.pages.length)
 
+    # 'reveal answer' type links have a href of "#" and an answer containing in the title attribute
+    # Make a simple javascript popup if clicked
+    @$('.chapter-content a[href="#"]').each (i, el) =>
+      if el.title
+        el.onclick = @_linkClickHandler
+      return
+
+
     return
+
+  _linkClickHandler: ->
+    alert this.title
+    return false
 
   _parseMarkdown: (source) ->
     html = marked.parse(source)
